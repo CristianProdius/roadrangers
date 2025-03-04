@@ -13,7 +13,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="relative bg-white overflow-hidden">
+    <section className="relative bg-white overflow-hidden ">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -27,7 +27,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-screen-xl mx-auto px-6 py-20 lg:py-32 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-32 text-center">
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Image
