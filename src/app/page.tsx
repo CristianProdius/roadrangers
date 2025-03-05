@@ -67,7 +67,7 @@ export default function Home() {
       <Problem />
       <ServicesOverview />
       <BenefitsSection />
-      <Testimonials />
+      {/*<Testimonials />*/}
       <HowItWorksSection />
       <FAQ />
       <CallToActionSection />
