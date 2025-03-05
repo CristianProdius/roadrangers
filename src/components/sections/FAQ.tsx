@@ -1,7 +1,9 @@
 "use client";
-import React, { useState, useRef } from "react";
+
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import Link from "next/link";
+import { ButtonsCard } from "../ui/buttons";
+import { useRouter } from "next/navigation";
 
 interface FAQItemProps {
   question: string;
@@ -35,16 +37,20 @@ const FAQItem: React.FC<FAQItemProps> = ({
         whileHover={{ x: 4 }}
         transition={{ duration: 0.2 }}
       >
-        <span className="text-lg font-semibold text-black pr-8 group-hover:text-[#D2B48C] transition-colors">
+        <span className="text-lg font-semibold text-gray-800 pr-8 group-hover:text-[#B8860B] transition-colors">
           {question}
         </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-gray-100 rounded-full p-2"
+          className={`rounded-full p-2 ${
+            isOpen ? "bg-[#D2B48C]/20" : "bg-gray-100"
+          }`}
         >
           <svg
-            className="w-6 h-6 text-[#D2B48C]"
+            className={`w-5 h-5 ${
+              isOpen ? "text-[#B8860B]" : "text-[#D2B48C]"
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -83,85 +89,87 @@ const FAQItem: React.FC<FAQItemProps> = ({
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const faqs = [
     {
       question: "What services does RoadRanger provide?",
       answer:
-        "RoadRanger offers expert dispatching, load negotiation, fleet monitoring, multilingual communication, and tailored solutions for trucking companies.",
+        "RoadRanger offers expert dispatching, load negotiation, fleet monitoring, multilingual communication, and tailored solutions for trucking companies. We handle all the logistics so you can focus on driving and growing your business.",
     },
     {
       question: "How can I get started with RoadRanger?",
       answer:
-        "Getting started is simple! Contact us via email or phone to discuss your needs. We’ll guide you through the onboarding process step by step.",
+        "Getting started is simple! Contact us via email or phone to discuss your needs. We'll guide you through the onboarding process step by step, collect your fleet information, and begin finding the best loads for your trucks right away.",
     },
     {
       question: "Is RoadRanger available around the clock?",
       answer:
-        "Yes! Our team provides 24/7 support to ensure your operations run smoothly at all times.",
+        "Yes! Our team provides 24/7 support to ensure your operations run smoothly at all times. We understand that trucking doesn't stop at 5pm, so neither do we. Our dispatchers are always available to handle any issues that arise.",
     },
     {
       question: "What languages do your dispatchers speak?",
       answer:
-        "Our dispatchers are fluent in English, Russian, and Romanian to ensure clear communication with brokers and shippers.",
+        "Our dispatchers are fluent in English, Russian, and Romanian to ensure clear communication with brokers and shippers. This multilingual capability helps eliminate miscommunications and ensures smooth operations for all parties involved.",
     },
     {
       question: "What are your fees?",
       answer:
-        "We offer a reasonable fee structure designed to maximize owner-operator profits while providing high-quality service.",
+        "We offer a reasonable fee structure designed to maximize owner-operator profits while providing high-quality service. Our pricing is transparent with no hidden costs, allowing you to plan your finances effectively. Contact us for specific pricing based on your fleet size and needs.",
     },
     {
       question: "Do you offer additional services beyond dispatching?",
       answer:
-        "Yes! We also provide optional accounting services to save you time and money while managing your business effectively.",
+        "Yes! We also provide optional accounting services to save you time and money while managing your business effectively. Our comprehensive approach ensures all aspects of your trucking business are handled professionally, allowing you to focus on growth.",
     },
   ];
 
+  const router = useRouter();
+
+  // Function to handle the "Get a Free Consultation" button click
+  const handleConsultationClick = () => {
+    router.push("/contact"); // Navigate to the contact page
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="py-20 bg-white">
-      <motion.div
-        className="container mx-auto px-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+    <section className="relative bg-gradient-to-b from-gray-50 to-white text-black py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D2B48C] to-transparent opacity-70"></div>
+
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           ref={headerRef}
-          className="max-w-7xl mx-auto text-center mb-16"
+          className="text-center mb-16"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={fadeIn}
+          transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }
-            }
-            transition={{ delay: 0.3 }}
-            className="text-6xl font-bold text-[#D2B48C] mb-6"
-          >
+          <h2 className="text-3xl font-extrabold text-[#B8860B] md:text-4xl lg:text-5xl xl:text-6xl tracking-tight">
             Frequently Asked Questions
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
-            }
-            transition={{ delay: 0.4 }}
-            className="text-gray-600 text-lg"
-          >
+          </h2>
+          <p className="mt-8 text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Find answers to common questions about our dispatch services and how
             we can help your trucking business thrive.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* FAQ Accordion */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 hover:bg-gray-100 transition-all duration-300"
+          className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-8 border border-gray-100 hover:border-[#D2B48C]/20 transition-all duration-300"
         >
           {faqs.map((faq, index) => (
             <FAQItem
@@ -176,18 +184,32 @@ const FAQ = () => {
         </motion.div>
 
         {/* Contact CTA */}
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">
-            Didn’t find the answer you were looking for?
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center bg-[#D2B48C] text-white font-medium px-6 py-3 rounded-full shadow-md hover:bg-black hover:text-[#D2B48C] border border-[#D2B48C] transition-all"
-          >
-            Contact Us for More Details
-          </Link>
-        </div>
-      </motion.div>
+        <motion.div
+          className="text-center mt-16"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={fadeIn}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        >
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-[#B8860B] mb-4">
+              Still Have Questions?
+            </h3>
+            <p className="text-gray-700 mb-6">
+              Our team is ready to answer any questions you might have about our
+              dispatch services. Get in touch today for personalized assistance!
+            </p>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <ButtonsCard
+                onClick={handleConsultationClick}
+                className="bg-gradient-to-r from-[#D2B48C] to-[#B8860B] text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:from-[#B8860B] hover:to-[#8B4513] transition-all duration-300 text-lg font-medium tracking-wide"
+              >
+                Contact Us for More Details
+              </ButtonsCard>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

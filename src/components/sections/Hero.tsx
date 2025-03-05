@@ -1,17 +1,28 @@
-/* *   - Headline and subheadline
- *   - Background image or pattern
- *   - CTA button
- *   - Optional floating elements*/
-
 "use client";
 
 import Image from "next/image";
 import { TextGenerateEffect } from "../ui/text-generate-effect";
 import { ButtonsCard } from "../ui/buttons";
+import { useRouter } from "next/navigation";
 
 import React from "react";
 
 const Hero = () => {
+  const router = useRouter();
+
+  // Function to handle the "Get a Free Consultation" button click
+  const handleConsultationClick = () => {
+    router.push("/contact"); // Navigate to the contact page
+  };
+
+  // Function to handle the "Explore Services" button click
+  const handleExploreServicesClick = () => {
+    // Find the services section and scroll to it
+    const servicesSection = document.getElementById("services-section");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="relative bg-white overflow-hidden ">
       {/* Background Image */}
@@ -38,16 +49,18 @@ const Hero = () => {
             className="drop-shadow-md"
           />
         </div>
-        {/* Headline */}
-        <TextGenerateEffect
-          className="text-5xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-lg"
-          words="RoadRanger – The dispatch partner that works for you!"
-        />
+        {/* Headline with increased spacing */}
+        <div>
+          <TextGenerateEffect
+            className="text-5xl font-extrabold  text-white md:text-6xl lg:text-7xl drop-shadow-lg text-center tracking-wider"
+            words="Road Ranger"
+          />
+        </div>
 
-        {/* Subheadline */}
+        {/* Tagline with improved contrast */}
         <TextGenerateEffect
-          className="mt-6 text-lg text-gray-200 md:text-xl lg:text-2xl max-w-3xl mx-auto"
-          words="At RoadRanger, we don’t just dispatch—we partner with you to maximize your success on the road. With us, every mile means more money in your pocket!"
+          className="mt-6 text-xl text-white md:text-2xl lg:text-3xl max-w-3xl mx-auto text-center font-medium drop-shadow-md"
+          words="With us, every mile means more money in your pocket!"
         />
 
         {/* CTA Button */}
@@ -55,7 +68,7 @@ const Hero = () => {
           {/* Primary Button */}
           <ButtonsCard
             className="bg-[#D2B48C] text-black hover:bg-black hover:text-[#D2B48C] transition-all shadow-lg px-8 py-4"
-            onClick={() => console.log("Free Consultation Clicked")}
+            onClick={handleConsultationClick}
           >
             Get a Free Consultation
           </ButtonsCard>
@@ -63,7 +76,7 @@ const Hero = () => {
           {/* Secondary Button */}
           <ButtonsCard
             className="bg-transparent border border-[#D2B48C] text-[#D2B48C] hover:bg-[#D2B48C] hover:text-black transition-all shadow-lg px-8 py-4"
-            onClick={() => console.log("Explore Services Clicked")}
+            onClick={handleExploreServicesClick}
           >
             Explore Services
           </ButtonsCard>
@@ -72,11 +85,11 @@ const Hero = () => {
         {/* Floating Stats */}
         <div className="mt-16 flex flex-wrap justify-center gap-x-12 gap-y-8">
           <div className="text-center">
-            <p className="text-4xl font-bold text-white">127+</p>
-            <p className="text-gray-300">Carriers Served</p>
+            <p className="text-4xl font-bold text-white">15+</p>
+            <p className="text-gray-300">Dispatchers</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold text-white">10+</p>
+            <p className="text-4xl font-bold text-white">3+</p>
             <p className="text-gray-300">Years in Business</p>
           </div>
           <div className="text-center">
