@@ -59,7 +59,7 @@ const Hero = () => {
 
         {/* Tagline with improved contrast */}
         <TextGenerateEffect
-          className="mt-6 text-xl text-white md:text-2xl lg:text-3xl max-w-3xl mx-auto text-center font-medium drop-shadow-md"
+          className="mt-6 text-2xl text-white md:text-3xl lg:text-4xl max-w-3xl mx-auto text-center font-medium drop-shadow-md"
           words="With us, every mile means more money in your pocket!"
         />
 
