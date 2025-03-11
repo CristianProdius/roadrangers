@@ -42,7 +42,7 @@ const Contact = () => {
                   </div>
                   <div className="ml-4 text-gray-700">
                     <p className="text-sm font-medium">Call Us</p>
-                    <p className="mt-1">(555) 123-4567</p>
+                    <p className="mt-1">(+1) 773-377-6003</p>
                   </div>
                 </div>
 
@@ -81,9 +81,7 @@ const Contact = () => {
                   </div>
                   <div className="ml-4 text-gray-700">
                     <p className="text-sm font-medium">Our Location</p>
-                    <p className="mt-1">
-                      123 Dispatch Road, Trucking City, TC 12345
-                    </p>
+                    <p className="mt-1">LA, California</p>
                   </div>
                 </div>
               </div>

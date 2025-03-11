@@ -75,7 +75,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6">
               <Link
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/share/p/18T9fnpj3q/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#D2B48C] hover:text-white transition-all duration-300 transform hover:scale-110"
@@ -83,7 +83,7 @@ const Footer = () => {
                 <IconBrandFacebook size={28} stroke={1.5} />
               </Link>
               <Link
-                href="https://www.linkedin.com"
+                href="www.linkedin.com/in/dionis-smoleac-3819b034b"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#D2B48C] hover:text-white transition-all duration-300 transform hover:scale-110"
@@ -104,7 +104,7 @@ const Footer = () => {
                 <IconMapPin size={20} className="text-[#D2B48C]" />
               </li>
               <li className="flex items-center justify-end gap-3 text-gray-300 hover:text-white transition-colors">
-                <span>+373 123 456 789</span>
+                <span>(+1) 773-377-6003</span>
                 <IconPhone size={20} className="text-[#D2B48C]" />
               </li>
               <li className="flex items-center justify-end gap-3 text-gray-300 hover:text-white transition-colors">
