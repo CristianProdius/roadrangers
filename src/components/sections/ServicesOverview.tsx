@@ -120,18 +120,6 @@ const ServicesOverview = () => {
               <p className="text-gray-600 group-hover:text-gray-800 transition-colors duration-300 flex-grow">
                 {service.description}
               </p>
-              {/* Learn More Link */}
-              <Link
-                href="/services"
-                className="mt-6 text-[#D2B48C] hover:text-[#8B4513] font-semibold transition-all flex items-center"
-              >
-                <span className="mr-1 group-hover:mr-2 transition-all">
-                  Learn More
-                </span>
-                <span className="transform group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </Link>
             </motion.div>
           ))}
         </motion.div>
